@@ -1,0 +1,1 @@
+<h1>Welcome to detail serie page</h1>

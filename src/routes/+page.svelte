@@ -7,3 +7,9 @@
 <section>
     <Series series={data.series}/>
 </section>
+
+<style>
+  :global(body) {
+		background-color: #213142;
+  }
+</style>

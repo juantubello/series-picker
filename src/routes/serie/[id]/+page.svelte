@@ -91,7 +91,6 @@
     margin-right: 30px; /* Espacio entre la imagen y el texto */
     max-width: 300px;
     min-width: 300px;
-    /* box-shadow: 0px 0px 10px 2px rgba(78, 79, 82, 1);  */
     
   }
 

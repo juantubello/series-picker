@@ -5,10 +5,16 @@
 
 <div class="serie-datail">
   <div class="img-container">
-    <img
+    <img class="img-serie"
       src={`https://image.tmdb.org/t/p/original${data.serieDetail.poster_path}`}
       alt={data.serieDetail.name}
     />
+    <div class="provider">
+        {#each data.serieDetail.networks as network}
+        <img
+         class="provider-img" src={`https://www.themoviedb.org/t/p/original${network.logo_path}`} alt={network.name}/>
+      {/each}
+    </div>
   </div>
   <div class="text">
     <div class="header">
@@ -33,6 +39,23 @@
 </div>
 
 <style>
+    .provider-img{
+        min-width: 70px;
+        max-width: 70px;
+        max-height: 20px;
+        min-height: 20px;
+        margin-top: 5px;
+        margin-right: 10px;
+        margin-left: 20px;
+        display: inline-block;
+    }
+    .provider{
+        border-radius: 0px 0px 10px 10px;
+        background-color: #f1f5f8;
+        align-items: center;
+        margin-bottom: 20px;
+        box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    }
     h4{
         display: inline-block;
         margin-right: 3rem;
@@ -53,7 +76,7 @@
     justify-content: flex-start;
     margin: 1rem auto;
     max-width: 50%;
-    box-shadow: 10px -1px 78px 6px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 27px 53px 5px rgba(33,23,33,0.92);
     background-color: #213142;
     /* background-image: var(--background-image); */
 
@@ -61,17 +84,21 @@
   }
 
   .img-container {
+    margin-bottom: -10px;
+    margin-top: 7px;
+    margin-left: 7px;
     width: 100%; /* Ajusta el ancho de la imagen según tus necesidades */
     margin-right: 30px; /* Espacio entre la imagen y el texto */
     max-width: 300px;
     min-width: 300px;
-    box-shadow: 0px 0px 10px 2px rgba(78, 79, 82, 1);
-    border-radius: 1rem;
+    /* box-shadow: 0px 0px 10px 2px rgba(78, 79, 82, 1);  */
+    
   }
 
-  img {
+  .img-serie {
     width: 100%;
-    border-radius: 1rem;
+    border-radius: 10px 10px 0px 0px;
+    margin-bottom: -6px;
   }
 
   .text {

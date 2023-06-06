@@ -1,4 +1,5 @@
 <script>
+      import {  Heading, P, Mark, Span } from 'flowbite-svelte'
   export let data;
   //   let url = `https://image.tmdb.org/t/p/w533_and_h300_bestv2${data.serieDetail.poster_path}`
 </script>
@@ -18,9 +19,9 @@
   </div>
   <div class="text">
     <div class="header">
-      <h1 class="title">{data.serieDetail.name}</h1>
+      <Heading tag="h1" class="mb-4" customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl">{data.serieDetail.name}</Heading>
       {#each data.serieDetail.genres as genre}
-        <h5 class="genre-container">{genre.name}</h5>
+        <h5 class="genre-container"><Mark markClass="px-3 rounded" color="text-white dark:bg-orange-600">{genre.name}</Mark></h5>
       {/each}
     </div>
     <div class="info">
@@ -32,20 +33,21 @@
       </h4>
     </div>
     <section class="details">
-      <h5 class="details-title">Sinopsis</h5>
-      <p>{data.serieDetail.overview}</p>
+      <!-- <h5 class="details-title">Sinopsis</h5> -->
+      <P class="mb-3" weight="light" color="text-gray-500 dark:text-gray-400">{data.serieDetail.overview}</P>
     </section>
   </div>
 </div>
 
 <style>
     .provider-img{
-        min-width: 70px;
-        max-width: 70px;
+        min-width: 65px;
+        max-width: 65px;
         max-height: 20px;
         min-height: 20px;
-        margin-top: 5px;
+        margin-top: 10px;
         margin-right: 10px;
+        margin-bottom: 5px;
         margin-left: 20px;
         display: inline-block;
     }
@@ -59,14 +61,14 @@
     h4{
         display: inline-block;
         margin-right: 3rem;
+        margin-bottom: 15px;
     }
   .info {
     display: inline-block;
     margin-right: 100px;
+    margin-top: 15px;
   }
-  .details-title {
-    /* margin: 0; */
-  }
+  
   .title {
     margin: 0;
   }
@@ -126,11 +128,12 @@
     color: white;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: 1400px) {
     .serie-datail {
       flex-direction: column;
       align-items: center;
       box-shadow: initial; /* Quitar el border-radius */
+      background-color: #101727
     }
 
     .img-container {

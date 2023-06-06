@@ -3,13 +3,13 @@
   export let data;
 </script>
 
-<h1>{data.prueba}</h1>
+<!-- <h1>{data.prueba}</h1> -->
 <section>
     <Series series={data.series}/>
 </section>
 
 <style>
   :global(body) {
-		background-color: #213142;
+		background-color: #101727;
   }
 </style>

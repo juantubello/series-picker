@@ -3,7 +3,7 @@
   import SerieCard from "./SerieCard.svelte";
 </script>
 
-<h3>Series</h3>
+<!-- <h3>Series</h3> -->
 <div class="series">
   {#each series as serie}
     <SerieCard {serie} />

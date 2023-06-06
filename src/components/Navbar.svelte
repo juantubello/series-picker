@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte'
   </script>
 
@@ -21,4 +21,4 @@
       <NavLi href="/pricing">Pricing</NavLi>
       <NavLi href="/contact">Contact</NavLi>
     </NavUl>
-  </Navbar>
+  </Navbar> -->

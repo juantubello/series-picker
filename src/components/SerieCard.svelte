@@ -42,4 +42,9 @@
     padding: 1rem;
     color: white
   }
+    .serie-card:hover img {
+      transform: scale(1.1); /* Zoom in effect on hover */
+    transition: transform 0.3s ease; /* Add a smooth transition */
+    box-shadow: 0px 0px 36px -12px rgba(255,255,255,1);
+  }
 </style>

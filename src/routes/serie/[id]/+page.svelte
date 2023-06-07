@@ -1,5 +1,5 @@
 <script>
-      import {  Heading, P, Mark, Span } from 'flowbite-svelte'
+  import {  Heading, P, Mark, Span } from 'flowbite-svelte'
   export let data;
   //   let url = `https://image.tmdb.org/t/p/w533_and_h300_bestv2${data.serieDetail.poster_path}`
 </script>
@@ -12,8 +12,10 @@
     />
     <div class="provider">
         {#each data.serieDetail.networks as network}
+        {#if network.index < 3}
         <img
          class="provider-img" src={`https://www.themoviedb.org/t/p/original${network.logo_path}`} alt={network.name}/>
+         {/if}
       {/each}
     </div>
   </div>
@@ -141,4 +143,13 @@
       margin-bottom: 20px;
     }
   }
+
+  .provider{
+        border-radius: 0px 0px 10px 10px;
+        background-color: #f1f5f8;
+        align-items: center;
+        margin-bottom: 20px;
+        box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    }
+
 </style>

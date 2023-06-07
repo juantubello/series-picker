@@ -1,4 +1,5 @@
 import { APIKEY } from '$env/static/private';
+import { ids } from './stores.js'
 /** @type {import('./$types').PageLoad} */
 
 export async function load() {
@@ -7,9 +8,19 @@ export async function load() {
 	         prueba: "Listado de series" }
 }
 
+function resetIds(){
+	console.log("Id's reseteados despues de 5 minutos")
+	let myValue = []
+	ids.subscribe(value => {
+		myValue = value;
+	});
+	ids.set([])
+}
+
 async function getMovies() {
+	setTimeout(resetIds, 300000);
 	return new Promise(async (resolve, reject) => {
-		const url = `https://api.themoviedb.org/3/tv/popular?api_key=${APIKEY}&language=es-ES&page=1`;
+		const url = `https://api.themoviedb.org/3/trending/tv/day?api_key=${APIKEY}&language=en-US&page=1`;
 		console.log(url)
 		try {
 			const res = await fetch(url);

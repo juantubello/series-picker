@@ -1,11 +1,21 @@
 <script>
     import { onMount, afterUpdate } from "svelte";
-    import { Search, GradientButton, Heading, Listgroup } from "flowbite-svelte";
+    import { Heading, Input, Label, GradientButton, Button, Card } from "flowbite-svelte";
   
+    let serie = "";
     let numbers = [];
     let winner = null;
     let highlightedNumber = null;
     let timer = null;
+  
+    const addSerie = () => {
+      numbers = [...numbers, { value: serie, id: Date.now() }];
+      serie = "";
+    };
+  
+    const deleteNumber = (numberId) => {
+      numbers = numbers.filter((number) => number.id !== numberId);
+    };
   
     const getRandomNumber = () => {
       if (timer) {
@@ -28,7 +38,7 @@
   
         if (currentIndex > maxIndex) {
           clearInterval(timer);
-          winner = highlightedNumber;
+          winner = highlightedNumber.value;
   
           // Remove the highlight after 2 seconds
           setTimeout(() => {
@@ -40,13 +50,13 @@
   
     onMount(() => {
       // Populate the numbers array with your desired list of numbers
-      numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      numbers = [];
     });
   
     afterUpdate(() => {
       // Scroll to the highlighted number if it exists
       if (highlightedNumber) {
-        const element = document.getElementById(`number-${highlightedNumber}`);
+        const element = document.getElementById(`number-${highlightedNumber.id}`);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
@@ -56,15 +66,25 @@
   
   <div class="search-container">
     <Heading tag="h6" class="mb-4">Add series to the randomize</Heading>
-    <Search>
-      <GradientButton color="pinkToOrange">Search</GradientButton>
-    </Search>
+    <div class="add-series-container">
+      <Label class="space-y-2">
+        <Input type="email" placeholder="Default input" size="md" bind:value={serie} />
+        <GradientButton color="purpleToPink" on:click={addSerie}>Add</GradientButton>
+      </Label>
+    </div>
   </div>
   <div class="randomize">
     <div class="number-list">
       {#each numbers as number}
-        <div class="{`number ${number === highlightedNumber ? 'highlighted' : ''}`}" id="number-{number}">
-          {number}
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div class="{`number ${number === highlightedNumber ? 'highlighted' : ''}`}" id="number-{number.id}" on:click={() => deleteNumber(number.id)}>
+            <Card>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{number.value}</h5>
+
+                <Button color="red" on:click={() => deleteNumber(number.id)}>
+                </Button>
+              </Card>   
+          <!-- <span class="delete-icon" >X</span> -->
         </div>
       {/each}
     </div>
@@ -75,41 +95,61 @@
   </div>
   
   <style>
+    /* Estilos existentes... */
+    .number {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin: 5px;
+    font-weight: bold;
+    padding: 10px;
+    position: relative;
+    margin-right: 20px; /* Ajuste el margen derecho según sea necesario */
+  }
+
+  .delete-icon {
+    width: 16px;
+    height: 16px;
+    color: red;
+    cursor: pointer;
+  }
     .search-container {
       margin: auto;
       width: 30%;
       padding: 10px;
+      margin-top: 6%;
     }
-    
+  
     .randomize {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-top: 20px;
     }
-    
+  
     .number-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       margin-bottom: 10px;
     }
-    
-    .number {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 80px;
-      height: 80px;
-      border: 1px solid #ccc;
-      margin: 5px;
-      font-weight: bold;
-    }
-    
+  
+  
     .highlighted {
       animation: highlight 2s;
     }
-    
+  
+    .delete-icon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 16px;
+      height: 16px;
+      color: red;
+      cursor: pointer;
+    }
+  
     @keyframes highlight {
       0% {
         background-color: yellow;
@@ -118,47 +158,47 @@
         background-color: inherit;
       }
     }
-    
+  
     button {
       padding: 10px 20px;
       margin-bottom: 10px;
     }
-    
+  
     .winner {
       font-weight: bold;
       margin-top: 10px;
     }
-    
+  
     @media (max-width: 1100px) {
       .search-container {
         width: 40%;
       }
     }
-    
+  
     @media (max-width: 1000px) {
       .search-container {
         width: 50%;
       }
     }
-    
+  
     @media (max-width: 900px) {
       .search-container {
         width: 60%;
       }
     }
-    
+  
     @media (max-width: 800px) {
       .search-container {
         width: 70%;
       }
     }
-    
+  
     @media (max-width: 700px) {
       .search-container {
         width: 70%;
       }
     }
-    
+  
     @media (max-width: 600px) {
       .search-container {
         width: 90%;

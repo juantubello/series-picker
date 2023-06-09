@@ -77,7 +77,7 @@
     <div class="number-list">
       {#each numbers as number}
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div class="{`number ${number === highlightedNumber ? 'highlighted' : ''}`}" id="number-{number.id}" on:click={() => deleteNumber(number.id)}>
+        <div class="{`number ${number === highlightedNumber ? 'highlighted' : ''}`}" id="number-{number.id}">
             <Card>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{number.value}</h5>
 

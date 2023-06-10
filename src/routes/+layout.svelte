@@ -46,7 +46,7 @@
   </NavBrand>
   <NavHamburger on:click={toggle} />
   <NavUl {hidden}>
-    <NavLi href="/" active={home} on:click={() => handleNavBarItems(home)}>
+    <NavLi href="/" active={home} on:click={() => handleNavBarItems("home")}>
       <div class="zoom-in-hover">Home</div>
     </NavLi>
     <NavLi

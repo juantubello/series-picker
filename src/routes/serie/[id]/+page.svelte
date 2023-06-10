@@ -1,5 +1,5 @@
 <script>
-  import {  Heading, P, Mark, Span } from 'flowbite-svelte'
+  import {  Heading, P, Badge } from 'flowbite-svelte'
   export let data;
   //   let url = `https://image.tmdb.org/t/p/w533_and_h300_bestv2${data.serieDetail.poster_path}`
 </script>
@@ -23,7 +23,7 @@
     <div class="header">
       <Heading tag="h1" class="mb-4" customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl">{data.serieDetail.name}</Heading>
       {#each data.serieDetail.genres as genre}
-        <h5 class="genre-container"><Mark markClass="px-3 rounded" color="text-white dark:bg-orange-600">{genre.name}</Mark></h5>
+      <div class="genre"><Badge rounded>{genre.name}</Badge></div>
       {/each}
     </div>
     <div class="info">
@@ -42,6 +42,10 @@
 </div>
 
 <style>
+  .details{
+    padding-right: 6px;
+    padding-left: 2px;
+  }
     .provider-img{
         min-width: 65px;
         max-width: 65px;
@@ -70,7 +74,10 @@
     margin-right: 100px;
     margin-top: 15px;
   }
-  
+  .genre{
+    display: inline-block;
+    padding-right: 6px;
+  }
   .title {
     margin: 0;
   }
